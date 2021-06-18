@@ -10,9 +10,9 @@ Salma Rahma Lailia (05111942000016)
 
 Zulfiqar Rahman Aji (05111942000019)
 
-## Final Project
+# Final Project
 
-Autentikasi
+## Autentikasi
 Ada username dan password tertentu untuk bisa akses database yang dia punya hak. Jika root (sudo) bisa akses semua database (tidak perlu didefinisikan secara rinci haknya, hanya dia bisa akses atau nggak).
 
 ### Format
@@ -45,7 +45,7 @@ CREATE USER [nama_user] IDENTIFIED BY [password_user];
 CREATE USER jack IDENTIFIED BY jack123;
 ```
 
-Authorisasi
+## Authorisasi
 Untuk dapat mengakses database yang dia punya permission dengan command. Pembuatan tabel dan semua DML butuh untuk mengakses database terlebih dahulu.
 
 ### Format
@@ -60,7 +60,7 @@ USE database1;
 
 Yang bisa memberikan permission atas database untuk suatu user hanya root.
 
-### Format
+## Format
 ```
 GRANT PERMISSION [nama_database] INTO [nama_user];
 ```
@@ -71,7 +71,8 @@ GRANT PERMISSION database1 INTO user1;
 ```
 
 User hanya bisa mengakses database dimana dia diberi permission untuk database tersebut.
-Data Definition Language
+
+## Data Definition Language
 Input penamaan database, tabel, dan kolom hanya angka dan huruf.
 Semua user bisa membuat database, otomatis user tersebut memiliki permission untuk database tersebut.
 
@@ -121,8 +122,8 @@ DROP TABLE table1;
 DROP COLUMN kolom1 FROM table1;
 ```
 
-Data Manipulation Language
-INSERT
+## Data Manipulation Language
+## INSERT
 Hanya bisa insert satu row per satu command. Insert sesuai dengan jumlah dan urutan kolom.
 
 ### Format
@@ -135,7 +136,7 @@ INSERT INTO [nama_tabel] ([value], ...);
 INSERT INTO table1 (‘value1’, 2, ‘value3’, 4);
 ```
 
-UPDATE
+## UPDATE
 Hanya bisa update satu kolom per satu command.
 
 ### Format
@@ -148,7 +149,7 @@ UPDATE [nama_tabel] SET [nama_kolom]=[value];
 UPDATE table1 SET kolom1=’new_value1’;
 ```
 
-DELETE
+## DELETE
 Delete data yang ada di tabel.
 
 
@@ -162,7 +163,7 @@ DELETE FROM [nama_tabel];
 DELETE FROM table1;
 ```
 
-SELECT
+## SELECT
 ### Format
 ```
 SELECT [nama_kolom, … | *] FROM [nama_tabel];
@@ -189,7 +190,7 @@ Command UPDATE, SELECT, dan DELETE bisa dikombinasikan dengan WHERE. WHERE hanya
 ```
 DELETE FROM table1 WHERE kolom1=’value1’;
 ```
-Logging
+## Logging
 Setiap command yang dipakai harus dilakukan logging ke suatu file dengan format. Jika yang eksekusi root, maka username root.
 
 ### Format di dalam log
@@ -202,7 +203,7 @@ timestamp(yyyy-mm-dd hh:mm:ss):username:command
 2021-05-19 02:05:15:jack:SELECT FROM table1
 ```
 
-Reliability
+## Reliability
 Harus membuat suatu program terpisah untuk dump database ke command-command yang akan di print ke layar. Untuk memasukkan ke file, gunakan redirection. Program ini tentunya harus melalui proses autentikasi terlebih dahulu. Ini sampai database level saja, tidak perlu sampai tabel. 
 
 ### Format
@@ -216,7 +217,7 @@ Harus membuat suatu program terpisah untuk dump database ke command-command yang
 ```
 
 Contoh hasil isi file database1.backup:
-``
+```
 DROP TABLE table1;
 CREATE TABLE table1 (kolom1 string, kolom2 int, kolom3 string, kolom4 int);
 
@@ -233,6 +234,7 @@ INSERT INTO table2 (‘abc’, 1, ‘bcd’, 2);
 INSERT INTO table2 (‘abc’, 1, ‘bcd’, 2);
 INSERT INTO table2 (‘abc’, 1, ‘bcd’, 2);
 ```
+
 Program dump database dijalankan tiap jam untuk semua database dan log, lalu di zip sesuai timestamp, lalu log dikosongkan kembali.
 
 Tambahan
